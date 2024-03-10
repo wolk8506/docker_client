@@ -1,14 +1,13 @@
 import axios from 'axios';
 import { createAsyncThunk } from '@reduxjs/toolkit';
+const { REACT_APP_SERVER } = process.env;
 
-// axios.defaults.baseURL = 'https://62cd93d7a43bf780085b2b48.mockapi.io/contacts';
-axios.defaults.baseURL = 'http://localhost:4000/api/';
+axios.defaults.baseURL = `${REACT_APP_SERVER}api`;
 
 export const fetchContact = createAsyncThunk(
   'contacts/fetchContact',
   async () => {
     const response = await axios.get('/contacts');
-    console.log(response.data.data.result);
     return response.data.data.result;
   }
 );
@@ -16,8 +15,7 @@ export const fetchContact = createAsyncThunk(
 export const addContact = createAsyncThunk(
   'contacts/addContact',
   async contact => {
-    const { name, phone } = contact;
-    const email = 'mail@addContact.com';
+    const { name, phone, email } = contact;
     const response = await axios.post('/contacts', { name, phone, email });
     return response.data.data.result;
   }
@@ -27,6 +25,17 @@ export const removeContact = createAsyncThunk(
   'contacts/removeContact',
   async id => {
     const response = await axios.delete(`/contacts/${id}`);
+    return response.data.data.result;
+  }
+);
+
+export const favoriteContact = createAsyncThunk(
+  'contacts/favorite',
+  async contact => {
+    const { _id, favorite } = contact;
+    const response = await axios.patch(`/contacts/${_id}/favorite`, {
+      favorite: !favorite,
+    });
     return response.data.data.result;
   }
 );
