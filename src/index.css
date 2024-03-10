@@ -8,7 +8,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  background: linear-gradient(270deg, #29323c 0%, #485563 100%);
+  background: linear-gradient(270deg, #3c2937 0%, #63485d 100%);
   padding-top: 50px;
   margin-bottom: 30px;
   padding: 30px;
@@ -16,15 +16,13 @@ body {
   border-radius: 20px;
 }
 
-
-
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
 
-.functionContact{
+.functionContact {
   display: flex;
   align-items: center;
-    justify-content: space-evenly;
+  justify-content: space-evenly;
 }
